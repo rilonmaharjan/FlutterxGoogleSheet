@@ -53,6 +53,7 @@ class _ActivityViewState extends State<ActivityView> {
         title: const Text("Activity List", style: TextStyle(color: Colors.black),),
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
+        elevation: 0.0,
       ),
       body: SingleChildScrollView(
         child: items.isEmpty ? SizedBox(

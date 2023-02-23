@@ -50,6 +50,7 @@ class _EditManifestState extends State<EditManifest> {
         title: const Text("Edit", style: TextStyle(color: Colors.black),),
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
+        elevation: 0.0,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -92,6 +93,7 @@ class _EditManifestState extends State<EditManifest> {
             ),
             TextFormField(
               controller: careOfController,
+              keyboardType: TextInputType.number,
               decoration: const InputDecoration(labelText: 'Care Of'),
             ),
             const SizedBox(

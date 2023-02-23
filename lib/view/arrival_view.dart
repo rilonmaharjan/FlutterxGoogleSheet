@@ -52,6 +52,7 @@ class _ArrivalViewState extends State<ArrivalView> {
         title: const Text("Arrival List", style: TextStyle(color: Colors.black),),
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
+        elevation: 0.0,
       ),
       body: widget.url == "" || widget.url == null
       ? SizedBox(
