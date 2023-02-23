@@ -150,7 +150,7 @@ class _EditManifestState extends State<EditManifest> {
     : mainController.updateDeparture(
         context,
         widget.depUrl ?? "",
-        widget.sn.toString(),
+        widget.sn,
         widget.firstName,
         firstNameController.text,
         widget.lastName,

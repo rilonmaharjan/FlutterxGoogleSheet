@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sheet/controller/manifest_controller.dart';
 import 'package:sheet/model/departure_model.dart';
-import 'package:sheet/view/careof_arv.dart';
+import 'package:sheet/view/care_of.dart';
 
 import 'edit_manifest.dart';
 
