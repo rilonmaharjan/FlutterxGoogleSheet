@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "501378232135",
+    "project_id": "sheet-c22e3",
+    "storage_bucket": "sheet-c22e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501378232135:android:4fef4565f7ceed2f392662",
+        "android_client_info": {
+          "package_name": "com.example.sheet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "501378232135-a3qdshqvvgfgn3ungk5piv4ghf59svjc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRJ8VPQkicSme2PQreFp2nuFEp8lanArY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "501378232135-a3qdshqvvgfgn3ungk5piv4ghf59svjc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
