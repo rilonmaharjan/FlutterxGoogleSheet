@@ -56,48 +56,52 @@ class _ArrivalViewState extends State<ArrivalView> {
             shrinkWrap: true,
             itemBuilder: (context, index) {
               if(index != 0 && items[index].careOf == ""){
-                return ListTile(
-                  onTap: (){
-                    Get.to(()=> CareOf(
-                      title: "Arrival",
-                      url: widget.url,
-                      editArvUrl: widget.editUrl, 
-                      sn: items[index].sn
-                    ));
-                  },
-                  onLongPress: () {
-                    Get.to(()=> EditManifest(
-                      firstName: items[index].firstName, 
-                      lastName: items[index].lastName, 
-                      status:  items[index].status,
-                      vehicelType:  items[index].vehicleType, 
-                      vip:  items[index].vip, 
-                      careOf:  items[index].careOf, 
-                      sn:  items[index].sn, 
-                      update: "Arrival", 
-                      arvUrl: widget.editUrl,
-                    ));
-                  },
-                  title: Padding(
-                    padding: const EdgeInsets.only(bottom:3.0),
-                    child: Row(
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: ListTile(
+                    tileColor: Colors.grey.withOpacity(0.15),
+                    onTap: (){
+                      Get.to(()=> CareOf(
+                        title: "Arrival",
+                        url: widget.url,
+                        editArvUrl: widget.editUrl, 
+                        sn: items[index].sn
+                      ));
+                    },
+                    onLongPress: () {
+                      Get.to(()=> EditManifest(
+                        firstName: items[index].firstName, 
+                        lastName: items[index].lastName, 
+                        status:  items[index].status,
+                        vehicelType:  items[index].vehicleType, 
+                        vip:  items[index].vip, 
+                        careOf:  items[index].careOf, 
+                        sn:  items[index].sn, 
+                        update: "Arrival", 
+                        arvUrl: widget.editUrl,
+                      ));
+                    },
+                    title: Padding(
+                      padding: const EdgeInsets.only(bottom:3.0),
+                      child: Row(
+                        children: <Widget>[
+                          const Icon(Icons.person),
+                          const SizedBox(width: 15,),
+                          Expanded(
+                            child: Text("${items[index].firstName} ${items[index].lastName}"),
+                          )
+                        ],
+                      ),
+                    ),
+                    subtitle: Row(
                       children: <Widget>[
-                        const Icon(Icons.person),
+                        const Icon(Icons.email),
                         const SizedBox(width: 15,),
                         Expanded(
-                          child: Text("${items[index].firstName} ${items[index].lastName}"),
+                          child: Text(items[index].airLine.toString()),
                         )
                       ],
                     ),
-                  ),
-                  subtitle: Row(
-                    children: <Widget>[
-                      const Icon(Icons.email),
-                      const SizedBox(width: 15,),
-                      Expanded(
-                        child: Text(items[index].flight.toString()),
-                      )
-                    ],
                   ),
                 );
               }
