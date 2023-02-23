@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sheet/controller/manifest_controller.dart';
@@ -15,12 +17,26 @@ class ArrivalView extends StatefulWidget {
 
 class _ArrivalViewState extends State<ArrivalView> {
   List<ArrivalModel> items = [];
+  Timer? timer;
     
   // Method to Submit Feedback and save it in Google Sheets
 
   @override
   void initState() {
     super.initState();
+   if(mounted){
+      timer = Timer.periodic(const Duration(milliseconds: 3000), (Timer t) => getArrivalList());
+    }
+  }
+
+  @override
+  void dispose() {
+    timer!.cancel();
+    super.dispose();
+  }
+
+
+  getArrivalList(){
     ManifestController().getArrivalList(widget.url).then((arrivalList) {
       setState(() {
         items = arrivalList;

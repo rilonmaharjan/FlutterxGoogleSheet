@@ -74,7 +74,7 @@ class _CareOfState extends State<CareOf> {
           child: widget.title == "Departure" ?
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: items.length,
+            itemCount: departureItems.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               if(index != 0 && departureItems[index].co == widget.sn){
@@ -126,7 +126,7 @@ class _CareOfState extends State<CareOf> {
           widget.title == "Activity" ?
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: items.length,
+            itemCount: activityItems.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               if(index != 0 && activityItems[index].careOf == widget.sn){
