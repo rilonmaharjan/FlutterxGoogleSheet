@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AddManifest extends StatefulWidget {
-  const AddManifest({ Key? key }) : super(key: key);
+  final bool? update;
+  final String? id;
+  const AddManifest({ Key? key, this.update, this.id }) : super(key: key);
 
   @override
   State<AddManifest> createState() => _AddManifestState();
@@ -21,7 +23,8 @@ class _AddManifestState extends State<AddManifest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Manifest', style: TextStyle(color: Colors.black),),
+        title:  Text(widget.update == true ? 'Update Manifest' : 'Add Manifest', 
+        style: const TextStyle(color: Colors.black),),
         iconTheme: const IconThemeData(color: Colors.black),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -39,6 +42,7 @@ class _AddManifestState extends State<AddManifest> {
                 ),
               ),
               const SizedBox(height: 20,),
+              widget.update == true ? const SizedBox() :
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -74,7 +78,8 @@ class _AddManifestState extends State<AddManifest> {
                   )
                 ],
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(height: 10,), 
+              widget.update == true ? const SizedBox() :
               manifest == "Act"
               ? Column(
                 children: [
@@ -124,9 +129,14 @@ class _AddManifestState extends State<AddManifest> {
                   )
                 ],
               ),
+              widget.update == true ? const SizedBox() :
               const SizedBox(height: 25,),
               ElevatedButton(
-                onPressed: upload, 
+                onPressed: widget.update == true ? 
+                (){
+                  update(widget.id); 
+                } 
+                : upload, 
                 child: const Text("Submit")
               ),
               const SizedBox(height: 10,),
@@ -138,6 +148,7 @@ class _AddManifestState extends State<AddManifest> {
   }
 
   upload() async{
+    var time = DateTime.now().toString();
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -145,7 +156,7 @@ class _AddManifestState extends State<AddManifest> {
           child: CircularProgressIndicator(),
         ),
       );
-      DocumentReference documentReferencer = FirebaseFirestore.instance.collection("manifest").doc(titleController.text.toString());
+      DocumentReference documentReferencer = FirebaseFirestore.instance.collection("manifest").doc(time);
       Map<String, dynamic> data = {
         'title' : titleController.text,
         'actUrl' : actController.text,
@@ -154,8 +165,24 @@ class _AddManifestState extends State<AddManifest> {
         'editActUrl' : editActController.text,
         'editArvUrl' : editArvController.text,
         'editDepUrl' : editDepController.text,
+        'id' : time,
       };
       await documentReferencer.set(data).then((value) => Navigator.pop(context)).then((value) => Navigator.pop(context));
     
+  }
+  
+  Future<void> update(id) async{
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+      DocumentReference documentReferencer = FirebaseFirestore.instance.collection("manifest").doc(id.toString());
+      Map<String, dynamic> data = {
+        'title' : titleController.text,
+      };
+      await documentReferencer.set(data).then((value) => Navigator.pop(context)).then((value) => Navigator.pop(context)); 
   }
 }

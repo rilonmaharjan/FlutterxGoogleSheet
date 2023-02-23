@@ -109,7 +109,7 @@ class _ManifestListState extends State<ManifestList> {
 
   deleteBottomSheet(data) {
     return Container(
-      height: 80.0,
+      height: 136.0,
       decoration: const BoxDecoration(
         color: Color(0xfff5f5f5),
         borderRadius: BorderRadius.only(
@@ -118,30 +118,56 @@ class _ManifestListState extends State<ManifestList> {
         )
       ),
       child: Padding(
-        padding: const EdgeInsets.only(top: 27.0, bottom: 10.0) ,
-        child: InkWell(
-          onTap: () {
-            delete(data['title']);
-            Get.back();
-          },
-          child: const SizedBox(
-            width: 280.0,
-            height: 40.0,
-            child:  Text('Delete',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-             textAlign: TextAlign.center,
+        padding: const EdgeInsets.only(top: 15.0, bottom: 10.0) ,
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () {
+                Get.back();
+                Get.to(()=> AddManifest(
+                  update: true,
+                  id: data['id'] == "" ? data['title'].toString() : data['id'].toString(),
+                ));
+              },
+              child: Container(
+                color: Colors.grey.withOpacity(0.1),
+                width: 300.0,
+                height: 42.0,
+                child: const Center(
+                  child: Text('Update',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
             ),
-          ),
+            const SizedBox(height: 10,),
+            InkWell(
+              onTap: () {
+                delete(data['id'] == "" ? data['title']:data['id']);
+                Get.back();
+              },
+              child: Container(
+                color: Colors.grey.withOpacity(0.1),
+                width: 300.0,
+                height: 42.0,
+                child: const Center(
+                  child: Text('Delete',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       )
     );
   }
 
-  Future<void> delete(title) async{
+  Future<void> delete(id) async{
     try{
       await FirebaseFirestore.instance
         .collection("manifest")
-        .doc(title)
+        .doc(id)
         .delete()
         .then((value) => Get.snackbar(
         "Deleted", "User Deleted Succesfully",
