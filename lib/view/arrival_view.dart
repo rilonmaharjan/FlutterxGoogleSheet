@@ -32,6 +32,7 @@ class _ArrivalViewState extends State<ArrivalView> {
   @override
   void dispose() {
     timer!.cancel();
+    timer; 
     super.dispose();
   }
 

@@ -33,6 +33,7 @@ class _DepartureViewState extends State<DepartureView> {
   @override
   void dispose() {
     timer!.cancel();
+    timer; 
     super.dispose();
   }
 

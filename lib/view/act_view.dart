@@ -34,6 +34,7 @@ class _ActivityViewState extends State<ActivityView> {
   @override
   void dispose() {
     timer!.cancel();
+    timer; 
     super.dispose();
   }
 
