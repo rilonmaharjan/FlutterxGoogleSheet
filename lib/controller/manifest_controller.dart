@@ -66,6 +66,7 @@ class ManifestController{
       );
       await http.get(Uri.parse("$arvUpdateUrl?Sn=$sn&DeleteLastName=$oldLastName&UpdateLastName=$lastName&DeleteFirstName=$oldFirstName&UpdateFirstName=$firstName&DeleteStatus=$oldStatus&UpdateStatus=$status&DeleteVehicleType=$oldVehicleType&UpdateVehicleType=$vehicleType&DeleteVip=$oldVip&UpdateVip=$vip&DeleteCareOf=$oldCareOf&UpdateCareOf=$careOf"), headers: {})
       .then((value) => Get.back())
+      .then((value) => Get.back())
       .then((value) => Get.snackbar("Success", "Updated Successfully"));
     } catch (e) {
       debugPrint(e.toString());
@@ -102,6 +103,7 @@ class ManifestController{
       );
       await http.get(Uri.parse("$actUpdateUrl?Sn=$sn&DeleteLastName=$oldLastName&UpdateLastName=$lastName&DeleteFirstName=$oldFirstName&UpdateFirstName=$firstName&DeleteStatus=$oldStatus&UpdateStatus=$status&DeleteVehicleType=$oldVehicleType&UpdateVehicleType=$vehicleType&DeleteVip=$oldVip&UpdateVip=$vip&DeleteCareOf=$oldCareOf&UpdateCareOf=$careOf"), headers: {})
       .then((value) => Get.back())
+      .then((value) => Get.back())
       .then((value) => Get.snackbar("Success", "Updated Successfully"));
     } catch (e) {
       debugPrint(e.toString());
@@ -137,6 +139,7 @@ class ManifestController{
         )
       );
       await http.get(Uri.parse("$depUpdateUrl?Sn=$sn&DeleteLastName=$oldLastName&UpdateLastName=$lastName&DeleteFirstName=$oldFirstName&UpdateFirstName=$firstName&DeleteStatus=$oldStatus&UpdateStatus=$status&DeleteVehicleType=$oldVehicleType&UpdateVehicleType=$vehicleType&DeleteVip=$oldVip&UpdateVip=$vip&DeleteCareOf=$oldCareOf&UpdateCareOf=$careOf"), headers: {})
+      .then((value) => Get.back())
       .then((value) => Get.back())
       .then((value) => Get.snackbar("Success", "Updated Successfully"));
     } catch (e) {
