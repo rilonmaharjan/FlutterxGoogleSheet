@@ -126,6 +126,13 @@ class _ManifestListState extends State<ManifestList> {
                 Get.back();
                 Get.to(()=> AddManifest(
                   update: true,
+                  editArvUrl: data["editArvUrl"],
+                  editDepUrl: data["editDepUrl"],
+                  editActUrl: data["editActUrl"],
+                  getActUrl: data["actUrl"],
+                  getArvUrl: data["arvUrl"],
+                  getDepUrl: data["depUrl"],
+                  title: data["title"],
                   id: data['id'] == "" ? data['title'].toString() : data['id'].toString(),
                 ));
               },

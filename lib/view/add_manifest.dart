@@ -2,9 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AddManifest extends StatefulWidget {
-  final bool? update;
+  final String? title, getActUrl, editActUrl, getArvUrl, editArvUrl, getDepUrl, editDepUrl;
   final String? id;
-  const AddManifest({ Key? key, this.update, this.id }) : super(key: key);
+  final bool? update;
+  const AddManifest({ Key? key, this.id, this.title, this.getActUrl, this.editActUrl, this.getArvUrl, this.editArvUrl, this.getDepUrl, this.editDepUrl, this.update }) : super(key: key);
 
   @override
   State<AddManifest> createState() => _AddManifestState();
@@ -19,6 +20,19 @@ class _AddManifestState extends State<AddManifest> {
   TextEditingController editArvController = TextEditingController();
   TextEditingController editDepController = TextEditingController();
   var manifest = "Act";
+
+  @override
+  void initState() {
+    super.initState();
+    titleController.text = widget.title.toString();
+    actController.text = widget.getActUrl.toString();
+    arvController.text = widget.getArvUrl.toString();
+    depController.text = widget.getDepUrl.toString();
+    editActController.text = widget.editActUrl.toString();
+    editArvController.text = widget.editArvUrl.toString();
+    editDepController.text = widget.editDepUrl.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +55,7 @@ class _AddManifestState extends State<AddManifest> {
                   labelText: 'Title'
                 ),
               ),
+              widget.update == true ? const SizedBox() :
               const SizedBox(height: 20,),
               widget.update == true ? const SizedBox() :
               Row(
@@ -79,8 +94,25 @@ class _AddManifestState extends State<AddManifest> {
                 ],
               ),
               const SizedBox(height: 10,), 
-              widget.update == true ? const SizedBox() :
-              manifest == "Act"
+              widget.update == true && widget.getActUrl != "" ? 
+              Column(
+                children: [
+                  TextFormField(
+                    controller: actController,
+                    decoration: const InputDecoration(
+                      labelText: 'Get Activity Url'
+                    ),
+                  ),
+                  const SizedBox(height: 20,),
+                  TextFormField(
+                    controller: editActController,
+                    decoration: const InputDecoration(
+                      labelText: 'Update Activity Url'
+                    ),
+                  ),
+                ],
+              ) :
+              widget.update == false && manifest == "Act"
               ? Column(
                 children: [
                   TextFormField(
@@ -129,7 +161,7 @@ class _AddManifestState extends State<AddManifest> {
                   )
                 ],
               ),
-              widget.update == true ? const SizedBox() :
+              // widget.update == true ? const SizedBox() :
               const SizedBox(height: 25,),
               ElevatedButton(
                 onPressed: widget.update == true ? 
@@ -182,6 +214,13 @@ class _AddManifestState extends State<AddManifest> {
       DocumentReference documentReferencer = FirebaseFirestore.instance.collection("manifest").doc(id.toString());
       Map<String, dynamic> data = {
         'title' : titleController.text,
+        'actUrl' : actController.text,
+        'arvUrl' : arvController.text,
+        'depUrl' : depController.text,
+        'editActUrl' : editActController.text,
+        'editArvUrl' : editArvController.text,
+        'editDepUrl' : editDepController.text,
+        'id' : widget.id.toString()
       };
       await documentReferencer.set(data).then((value) => Navigator.pop(context)).then((value) => Navigator.pop(context)); 
   }
